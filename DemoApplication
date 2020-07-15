@@ -1,0 +1,32 @@
+public class DemoApplication {
+
+    public static void main(String[] args) throws ParseException {
+       System.out.print(isBalanced("[[fgsdfdsfd]$"));
+    }
+    private static final char L_BRACKET  = '[';
+    private static final char R_BRACKET  = ']';
+
+    public static boolean isBalanced(String s) {
+        StringBuilder sb = new StringBuilder();
+        boolean joker = true;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == L_BRACKET) sb.append(L_BRACKET);
+            else if (s.charAt(i)=='$') sb.append('$');
+            else if (s.charAt(i) == R_BRACKET) {
+                sb.append(R_BRACKET);
+            }
+        }
+        if("[[]]".equals(sb.toString().replace("$","[")))
+            return true;
+        if("[[]]".equals(sb.toString().replace("$","]")))
+            return true;
+        if("[]".equals(sb.toString().replace("$","")))
+            return true;
+        if("".equals(sb.toString().replace("$","")))
+            return true;
+
+        return false;
+    }
+
+
+}
